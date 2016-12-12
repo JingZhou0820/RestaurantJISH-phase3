@@ -1,0 +1,52 @@
+﻿@using RestaurantJISH_phase31.Models
+@model IEnumerable<Restaurant>
+@{
+    ViewBag.Title = "List";
+}
+<link href="~/Content/backgroundOflist.css" rel="stylesheet" />
+    
+        <!-- /.row -->
+        <!-- Project One -->
+<div class="container">
+    <div class="row">
+        <div style="margin-left:120px;margin-top:80px" >
+            <h4 style="color:gray;font-family:'Times New Roman'">Found @Model.Count() Restaurants </h4>
+        </div>
+    </div>  
+</div>
+
+       @foreach (var item in Model)
+       {
+        <div class="row" style="margin-bottom:15px">
+           <hr>
+            <div class="col-md-7" style="padding-left:120px" >
+               
+                    <br/>
+                    <img class="img-responsive" src="~/assets/RestaurantsPicture/@item.Image1" alt="">             
+            </div>
+            <div class="col-md-5" style="font-family:Arial">
+                @using (Html.BeginForm("Menu", "Restaurant", FormMethod.Get)){
+                <h3> @item.Name.First().ToString().ToUpper()@item.Name.Substring(1)</h3>
+                <h4 style="color:gray">Area: @item.Area.First().ToString().ToUpper()@item.Area.Substring(1)  , 
+                 @item.City.First().ToString().ToUpper()@item.City.Substring(1)</h4>
+                <h4 style="color:gray">Type: @item.Type.First().ToString().ToUpper()@item.Type.Substring(1)</h4>
+                <p style="color:gray">Description: @item.Description</p>
+                @Html.TextBox("id",item.RestaurantId,new {type="hidden"});
+                <button class="btn btn-primary" type="submit" id="checkMenuButton" value="RestaurantId" >View Detail/Menus <span class="glyphicon glyphicon-chevron-right"></span></button>
+                }
+            </div>
+        </div>
+       }
+        <!-- /.row -->
+
+        
+        
+                    @if (Model.Count() == 0)
+                    {   <div class="row">
+                        <div class="col-lg-offset-4 col-lg-5" style="margin-top:50px;">
+                        <h3>Opps! Cannot find any resaurant</h3>
+                         </div>
+    </div>
+                    }
+                  
+                

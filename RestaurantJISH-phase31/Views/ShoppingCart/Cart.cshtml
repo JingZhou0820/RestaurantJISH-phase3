@@ -1,0 +1,69 @@
+﻿@using RestaurantJISH_phase31.Models
+@{
+    ViewBag.Title = "Cart";
+}
+<div class="col-lg-offset-1 col-lg-10" style="margin-top:100px">
+   
+   <table class="table table-condensed">
+       <tr>
+           
+           <th>Option</th>
+           <th>Restaurant</th>        
+           <th>FoodName</th>
+           <th>FoodPrice</th>
+           <th>FoodQuantity</th>
+           <th>total</th>
+       </tr>
+       @{ 
+           double s = 0;
+           double op = 0;
+       }
+       @if (Session["Cart"] != null)
+       {
+       foreach (Item item in (List<Item>)Session["Cart"])
+       {
+           s = s + item.product.price * item.quantity;
+           op = op + 1;
+        <tr>
+            <td>@op</td>
+            <td><a href="@Url.Action("menu", "Restaurant", new { id = item.restaurant.RestaurantId })">@item.restaurant.Name</a></td>
+            <td>@item.product.foodName</td>
+            <td>$@item.product.price</td>
+            <td>@item.quantity</td>
+            <td>$@(item.product.price * item.quantity)</td>
+            <td>@Ajax.ActionLink("X", "Delete", "ShoppingCart", new { id = item.product.foodId }, new AjaxOptions { HttpMethod = "post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "cart-number" },new { @style="color:red"})</td>
+           
+        </tr>
+
+       }  
+       }
+   </table>
+    <div class="row">
+    <div class="col-lg-offset-11" style="align:right">
+        Sub: $@s
+        </div>    
+    </div>
+    <div class="row">
+        <div class="col-lg-offset-11" style="align:right">
+            @{
+
+                ViewBag.total = (s * 1.13);
+            }
+            Total:$@String.Format("{0:0.00}",ViewBag.total)
+        </div>
+    </div>
+    @if (ViewBag.total!=0)
+    {
+        <div class="row">
+            <div class="col-lg-offset-11" style="align:right">
+                @Html.ActionLink("Check out", "checkout", "Individual", null, new { @class = "btn btn-primary" })
+
+            </div>
+        </div>
+    }
+    
+    </div>
+<div class="row">
+    <div class="col-lg-12"></div>
+</div>
+

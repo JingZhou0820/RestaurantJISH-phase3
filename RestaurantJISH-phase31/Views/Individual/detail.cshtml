@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "detail";
+}
+@model IEnumerable<RestaurantJISH_phase31.Models.vieworder>
+<div style="margin-top:100px">
+
+    <div class="row">
+        <div class="col-md-offset-2 col-md-7">
+
+            <h4>Order @ViewBag.orderId</h4>
+            <table class="table table-hover">
+                <tr>
+                <tr>
+                    <th>Option</th>
+                    <th>Restaurant</th>
+                    <th>FoodName</th>
+                    <th>FoodPrice</th>
+                    <th>FoodQuantity</th>
+                    <th>total</th>
+                </tr>
+                @{
+                    double s = 0;
+                    double op = 0;
+                }
+             
+                    @foreach (var item in Model)
+                    {
+                        s = s + Convert.ToDouble(item.OrderItem.Price) * Convert.ToDouble(item.OrderItem.quantity);
+                        op = op + 1;
+                        <tr>
+                            <td>@op</td>
+                            <td>@item.OrderItem.RestaurantName</td>
+                            <td>@item.OrderItem.FoodName</td>
+                            <td>$@item.OrderItem.Price</td>
+                            <td>@item.OrderItem.quantity</td>
+                            <td>$@(item.OrderItem.Price * item.OrderItem.quantity)</td>
+                           
+
+                        </tr>
+
+                    }
+                
+                
+                </table>
+            <div class="row">
+                <div class="col-lg-offset-10" style="align:right">
+                    Sub: $@s
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-offset-10" style="align:right">
+                    @{
+
+                        ViewBag.total = (s * 1.13);
+                    }
+                    Total:$@String.Format("{0:0.00}", ViewBag.total)
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+

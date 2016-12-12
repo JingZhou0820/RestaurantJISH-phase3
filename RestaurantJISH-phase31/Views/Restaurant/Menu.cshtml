@@ -1,0 +1,127 @@
+﻿@using RestaurantJISH_phase31.Models
+@using PagedList
+@using PagedList.Mvc
+@model menuDetailmodel
+@{
+    ViewBag.Title = "Menu";
+}
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<link href="~/Content/hoverPictureMenu.css" rel="stylesheet" />
+<script src="~/Scripts/menuAjax.js"></script>
+
+  <!-- Page Content -->
+
+<div class="container" style="padding-left:90px;margin-top:70px">
+
+    <div class="row">
+
+        <!--Restaurants' category navbar-->
+        <div class="col-md-3">
+            <div style="color:darkslategrey;padding-left:10px">
+                <p style="font-size:20px;">@Model.restuarantName.ToUpper()</p>
+                <p>@Model.restuarantInformation.Area.ToUpper() , @Model.restuarantInformation.City.ToUpper()</p>
+                <p><i class="fa fa-map-marker" aria-hidden="true" style="margin-right:10px"></i>@Model.restuarantInformation.Address</p>
+                <p><i class="fa fa-phone" aria-hidden="true" style="margin-right:5px"></i>@Model.restuarantInformation.Phone</p>
+            </div>
+            <!--Ajax link add to side nav bar-->
+            <div class="list-group">
+                @foreach (var item in Model.navBarList)
+                {
+                    @Ajax.ActionLink(item.CategoryName.ToUpper(), "detailOfeachCategory",
+            new { restaurantId = item.RestaurantId, categoryId = item.CategoryId },
+            new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "productsContent", InsertionMode = InsertionMode.Replace },
+            new { @class = "list-group-item" })
+
+                }
+            </div>
+            <!--Google map address-->
+            <div id="googleMap">
+                <iframe src="@Model.restuarantInformation.MapURL" width="250" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+            </div>
+        </div>
+
+        <!--End category navbar-->
+
+        <div id="productsContent">
+
+            <div class="col-md-9">
+
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+                            <div class="carousel-inner">
+
+                                @for (int i = 0; i < Model.detailMenu.Count(); i++)
+                                {
+                                    if (i == Model.detailMenu.Count() - 1)
+                                    {
+                                        <div class="item active">
+                                            <img class="slide-image" src="~/assets/@Model.detailMenu[i].category.RestaurantId/@Model.detailMenu[i].menu.foodImage" alt="">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="item">
+                                            <img class="slide-image" src="~/assets/@Model.detailMenu[i].category.RestaurantId/@Model.detailMenu[i].menu.foodImage" alt="">
+                                        </div>
+                                    }
+                                }
+
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row" id="pagedListArea">
+                    @Html.Partial("_PagedMenuList", Model)
+
+                
+                </div>
+                </div>
+            
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content" style="background-color:rgba(0, 0, 0,0.4)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" style="color:white;text-align:center"></h4>
+
+                    </div>
+                    <div class="modal-body" style="color:white;text-align:center">
+                        <div class="row">
+                            <img id="imageArea" src="~/assets/1001/1.jpg" style="width:100%;height:100%" />
+                        </div>
+                        <div class="row">
+                            <h4 id="priceArea">Price: </h4>
+                            <h4 id="descriptionArea">Description: </h4>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer" style="color:white;text-align:center">
+
+                        &copy;2016 - By Jing Zhou
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+
+
+
+

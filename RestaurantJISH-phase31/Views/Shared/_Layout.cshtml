@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.easing.1.3.js"></script>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <script src="~/Scripts/menuAjax.js"></script>
+    <script src="~/Scripts/addTocart.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top" style="margin-bottom:0px">
+        <div class="container" style="padding-left:25px">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                   <a href="~/Restaurant/Index"> <img src="~/assets/pageContent/jish-iloveimg-cropped.png" style="width:80px"/></a>
+                
+                </div>    
+              @*@Html.ActionLink("EAT YO", "Index", "Restaurant",null,new { @class="navbar-header navbar-brand"})*@
+              <a class="page-scroll navbar-brand" href="#contact"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+              
+                </div>
+            
+                <div class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav navbar-right" >
+                          <li>@Html.Partial("_LoginPartial")</li>                   
+                    </ul>
+                  
+                </div>
+            </div>
+    </div>
+    
+        @RenderBody()
+      
+        <footer  style="margin-top:50px" >
+            <div id="contact" >
+            <p style="text-align:center" >&copy;  @DateTime.Now.Year- By Jing Zhou & Hina Patel & Solanky Thareja & Ishan Sharma</p>
+   
+
+            </div>
+           
+        </footer>
+   
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

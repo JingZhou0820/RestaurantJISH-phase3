@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "vieworders";
+}
+@model IEnumerable<RestaurantJISH_phase31.Models.vieworder>
+
+<div style="margin-top:100px">
+
+    <div class="row">
+       <div  class="col-md-offset-2 col-md-7">
+        <table class="table table-hover">
+            <tr>
+                <td>
+                    OrderId
+                </td>
+                <td>
+                    Name
+                </td>
+                <td>
+                    Phone
+                </td>
+                <td>
+                    PostCode
+                </td>
+                <td>
+                    </td>
+            </tr>
+            @{
+                int depulicated = 0;
+            }
+            @foreach (var item in Model)
+            {
+                if (item.order.OrderId != depulicated)
+                {
+                    <tr>
+                        <td>@item.order.OrderId</td>
+                        <td>@item.order.Name
+                        </td>
+                        <td>@item.order.Phone</td>
+                        <td>@item.order.PostalCode</td>
+                        <td>@Html.ActionLink("detail","detail","Individual",new {ordernumber = item.order.OrderId},null)</td>
+                    </tr>
+                    depulicated = item.order.OrderId;
+
+                }
+
+
+            }
+        </table>
+    </div>
+</div>
+    </div>
+<div class="row">
+    <div class="col-md-12">
+        </div>
+    </div>

@@ -1,0 +1,88 @@
+﻿@using RestaurantJISH_phase31.Models
+@{
+    ViewBag.Title = "checkout";
+}
+<div class="row" style="margin-top:100px">
+    <div class="col-md-offset-4 col-md-5">
+        @if (Session["cart"] == null||Session["cart"].ToString() ==string.Empty)
+        {
+            <h3>Please add items, your cart is empty</h3>
+        }
+        else
+        {
+           
+            <h3 style="color:brown">Please Enter Order Information: </h3>
+                        using (Html.BeginForm("order", "Individual", FormMethod.Get, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    <label for="RecieverName'">Reciever's Name: </label>
+                    @Html.TextBox("RecieverName", null, new { @class = "form-control", placeholder = "name",type="name",required="required" })
+                </div>
+                <div class="form-group">
+                    <label for="address">Address: </label>
+                    @Html.TextBox("address", null, new { @class = "form-control", placeholder = "address", type = "address", required = "required" })
+                </div>
+                <div class="form-group">
+                    <label for="phonenumber">Phone number: </label>
+                    @Html.TextBox("phonenumber", null, new { @class = "form-control", placeholder = "phone number", pattern = "[0-9]{3}[0-9]{3}[0-9]{4}", required = "required" })
+                </div>
+                <div class="form-group">
+                    <label for="PostCode">Post Code: </label>
+                    @Html.TextBox("PostCode", null, new { @class = "form-control", placeholder = "post code", pattern= "[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ] ?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]", required = "required" })
+                </div>
+                <div class="jumbotron" style="padding:20px">
+                    <h4 style="color:brown">Order detail</h4>
+                    <table class="table table-condensed">
+                        <tr>
+                            <th>Option</th>
+
+                            <th>FoodName</th>
+                            <th>FoodPrice</th>
+                            <th>FoodQuantity</th>
+                            <th>total</th>
+                        </tr>
+                        @{
+                            double s = 0;
+        double op = 0;
+                        }
+                        @if (Session["Cart"] != null)
+        {
+            foreach (Item item in (List<Item>)Session["Cart"])
+            {
+                s = s + item.product.price * item.quantity;
+                op = op + 1;
+                                <tr>
+                                    <td>@op</td>
+
+                                    <td>@item.product.foodName</td>
+                                    <td>$@item.product.price</td>
+                                    <td>@item.quantity</td>
+                                    <td>$@(item.product.price * item.quantity)</td>
+
+
+                                </tr>
+
+                            }
+        }
+                    </table>
+                    <div class="row">
+                        <div class="col-lg-offset-10" style="align:right">
+                            Sub: $@s
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-offset-10" style="align:right">
+                            @{
+
+                                ViewBag.total = (s * 1.13);
+                            }
+                            Total:$@String.Format("{0:0.00}", ViewBag.total)
+                        </div>
+                    </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit" id="payButton" value="Pay">Pay Now!</button>
+                    }
+                    }
+                </div>
+</div>
+
