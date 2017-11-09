@@ -2,10 +2,11 @@
     ViewBag.Title = "Index";
 }
 <!--full screen wrapper part-->
-<div class="jumbotron" id="box-wrapper" style="margin-bottom:0px">
-    <div class="container">
+<div id="header">
+<div class="content-section-a" style="margin-bottom:0px">
+    <div class="container-fluid">
         <div class="row" style="padding-top:200px;padding-bottom:200px">
-            <div class="col-md-offset-4 col-md-5">
+            <div class="col-md-offset-4 col-md-4">
                 <div class="jumbotron transparentBackground">
                     <div id="custom-search-input">
 
@@ -28,18 +29,21 @@
         </div>
     </div>
 </div>
+    </div>
 <!--Website introduction part-->
 
 <div class="content-section-a">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-lg-5 col-sm-6">
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
-                <h2 class="section-heading">Finding the food you like<br>All delicious</h2>
+                <h2 class="section-heading">Search restaurants by typing in kye words<br></h2>
                 <p class="lead">
-                    To know more <a target="_blank" href="/Restaurant/Index">How to search the restaurant</a>
-                    Please take a look the web guidline
+                    4 restaurants information saved in MySql relational database
+                    <br>
+                    Key words Example : moto, JaPanese, meat,toronto, INDIAN.....
+                   
                 </p>
             </div>
             <div class="col-lg-5 col-lg-offset-2 col-sm-6">
@@ -54,14 +58,18 @@
 
 <div class="content-section-b" style="padding-left:100px;">
 
-    <div class="container">
+    <div class="container-fluid">
 
         <div class="row">
             <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
-                <h2 class="section-heading">Open online restaurant<br>Upload menu</h2>
-                <p class="lead"><a target="_blank" href="/Account/Register">Register as business customer</a> to open your online restaurant showing your cuisines and add new sales channel of Take-out</p>
+                <h2 class="section-heading">Click "Buy" button in "menu" page to add item in shopping cart</h2>
+                <p class="lead">
+                Page Path: Main page ---> Restaurants Page ---> Menu Page
+                <br />
+                Short Path: Go to Moto Japanese Restuarnt <a href="http://localhost:4529/Restaurant/Menu?id=1001">Menu</a> page
+                </p>
             </div>
             <div class="col-lg-5 col-sm-pull-6  col-sm-6">
                 <img class="img-responsive" src="~/assets/pageContent/soup.png" alt="">
@@ -76,14 +84,16 @@
 
 <div class="content-section-a">
 
-    <div class="container">
+    <div class="container-fluid">
 
         <div class="row">
             <div class="col-lg-5 col-sm-6">
                 <hr class="section-heading-spacer">
                 <div class="clearfix"></div>
-                <h2 class="section-heading">Order foods </h2>
-                <p class="lead"> Convenient the life using JISH <a target="_blank" href="/Account/Register">Gegister now </a> that all foods will be delivered to your home </p>
+                <h2 class="section-heading">Log in & Check out </h2>
+                <p class="lead"> Login Path 1: LogIn page --> Order food -->cart --> Check out --> View order
+                <br>Login Path 2: Order food -->cart --> Check out --> LogIn page--> View order
+                <br><a href="http://localhost:4529/Account/Login"> Try Log in </a> UserName:<strong>jing</strong> , Password:<strong>123456</strong> </p>
             </div>
             <div class="col-lg-5 col-lg-offset-2 col-sm-6">
                 <img class="img-responsive" src="~/assets/pageContent/sushi.png" alt="">
@@ -96,20 +106,18 @@
 
 <div class="banner">
 
-    <div class="container">
+    <div class="container-fluid">
 
         <div class="row">
             <div class="col-lg-6">
-                <h2>Join us to start E-Life:</h2>
+                <h2>Contact me:</h2>
             </div>
             <div class="col-lg-6">
                 <ul class="list-inline banner-social-buttons">
-                    <li>
-                        <a href="https://twitter.com/hashtag/MasterChefBR?src=tren&lang=en" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                    </li>
+                   
 
                     <li>
-                        <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                        <a href="https://www.linkedin.com/in/jing-zhou-36b007152/" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
                     </li>
                 </ul>
             </div>

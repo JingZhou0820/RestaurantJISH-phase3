@@ -11,12 +11,12 @@
 
   <!-- Page Content -->
 
-<div class="container" style="padding-left:90px;margin-top:70px">
+<div class="container-fluid" style="margin-top:70px">
 
     <div class="row">
 
         <!--Restaurants' category navbar-->
-        <div class="col-md-3">
+        <div class="col-sm-offset-1 col-sm-2">
             <div style="color:darkslategrey;padding-left:10px">
                 <p style="font-size:20px;">@Model.restuarantName.ToUpper()</p>
                 <p>@Model.restuarantInformation.Area.ToUpper() , @Model.restuarantInformation.City.ToUpper()</p>
@@ -36,7 +36,7 @@
             </div>
             <!--Google map address-->
             <div id="googleMap">
-                <iframe src="@Model.restuarantInformation.MapURL" width="250" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <iframe src="@Model.restuarantInformation.MapURL" width="230" height="230" frameborder="0" style="border:0" allowfullscreen></iframe>
 
             </div>
         </div>
@@ -45,7 +45,7 @@
 
         <div id="productsContent">
 
-            <div class="col-md-9">
+            <div style="padding-left:50px"class="col-sm-7">
 
                 <div class="row carousel-holder">
 

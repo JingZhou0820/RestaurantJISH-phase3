@@ -1,13 +1,14 @@
 ﻿/*Full screen background on main page*/
-#box-wrapper {
- background-image: url('../assets/pageContent/image.jpg');
+#header .content-section-a {
+ background: url('../assets/pageContent/image.jpg') no-repeat center center;
  background-size:cover;
- background-attachment:fixed;
- background-position:center;
- background-repeat:no-repeat;
- min-height:640px;
- min-width:1260px;
+ padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  color: #f8f8f8;
+
 }
+
 /*Reset the previous padding 15px in container*/
 .container {
 padding:0px;

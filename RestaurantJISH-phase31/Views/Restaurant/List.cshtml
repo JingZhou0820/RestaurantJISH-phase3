@@ -7,9 +7,9 @@
     
         <!-- /.row -->
         <!-- Project One -->
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div style="margin-left:120px;margin-top:80px" >
+        <div style="margin-top:80px" class="col-sm-offset-1 col-sm-5" >
             <h4 style="color:gray;font-family:'Times New Roman'">Found @Model.Count() Restaurants </h4>
         </div>
     </div>  
@@ -19,12 +19,12 @@
        {
         <div class="row" style="margin-bottom:15px">
            <hr>
-            <div class="col-md-7" style="padding-left:120px" >
+            <div class="col-sm-offset-1 col-sm-5"   >
                
                     <br/>
                     <img class="img-responsive" src="~/assets/RestaurantsPicture/@item.Image1" alt="">             
             </div>
-            <div class="col-md-5" style="font-family:Arial">
+            <div class="col-sm-5" style="font-family:Arial">
                 @using (Html.BeginForm("Menu", "Restaurant", FormMethod.Get)){
                 <h3> @item.Name.First().ToString().ToUpper()@item.Name.Substring(1)</h3>
                 <h4 style="color:gray">Area: @item.Area.First().ToString().ToUpper()@item.Area.Substring(1)  , 
