@@ -14,7 +14,47 @@ $(document).on("click", "#open-ModalDialog", function () {
     $(".modal-body #descriptionArea").html(description);
 });
 
+//Add animation to ordering item
+$(document).on("click", ".product a", function () {
+    var cart = $('.b-cart');
+    var imgtodrag = $(this).parent('.thumbnail').find("img").eq(0);
 
+    if (imgtodrag) {      
+        var imgclone = imgtodrag.clone()
+            .offset({
+                top: imgtodrag.offset().top,
+                left: imgtodrag.offset().left
+            })
+            .css({
+                'opacity': '0.5',
+                'position': 'absolute',
+                'height': '100px',
+                'width': '200px',
+                'z-index':200000000000,
+            })
+            .appendTo($('body'))
+            .animate({
+                'top': cart.offset().top + 10,
+                'left': cart.offset().left + 10,
+                'width': 75,
+                'height': 45
+            }, 1000, 'easeInOutExpo');
 
+       
+
+        imgclone.animate({
+            'width': 0,
+            'height': 0
+        }, function () {
+            $(this).detach()
+        });
+    }
+});
  
   
+
+
+
+
+
+   
